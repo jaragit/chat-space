@@ -1,77 +1,3 @@
--# <!DOCTYPE html>
-
--# <html>
--#   <body>
--#     <div class = "flash-box">
--#       <div class = "notice">グループを作成しました</div>
--#     </div>
-
--#     <div class = "wrapper">
--#       <div class = "chat-side">
--#         <div class = "side-header">
--#           <div class = "side-header__box">
--#             <p class = "side-header__box__user-name">test</p>
--#             <ul class = "side-header__box__menu">
--#               <li class = "side-header__box__menu__new-group">
--#                 <a href >
--#                   <i class = "fa fa-edit"></i>
--#                 </a>
--#               </li>
--#               <li class = "side-header__box__menu__edit-user">
--#                 <a href >
--#                   <i class = "fa fa-cog"></i>
--#                 </a>
--#               </li>
--#             </ul>
--#           </div>
--#         </div>  
--#         <div class = "groups">
--#           <a href ></a> 
--#             <div class = "group">
--#               <p class = "group__name">
--#               jjj
--#               <p class = "groups__message">
--#               lll
--#             </div>
--#           </a>
--#         </div>
--#       </div>
--#       <div class = "chat-main">  
--#         <div class = "main-header">
--#           <div class = "main-header__left-box">
-          
--#             <h2 class = "main-header__left-box__current-group">
--#             hhh
--#             <ul class = "main-header__left-box__member">kkkkkkkkkkk
--#           </div>
--#           <div class = "main-header__edit-btn">Edit</div>
--#             <a href ></a>
--#         </div>
--#         <div class = "messages">
--#           <div class = "messages__box">
--#             <h2 class = "messages__user">jjara
--#             <ul class = "messages__user__time">9999/99:99
--#           </div>
--#             <p class = "messages__user__text">
--#             gu
--#         </div>
--#         <div class = "form">
--#           <form class="new_message" id="new_message" enctype="multipart/form-data" action="/groups/2418/messages" accept-charset="UTF-8" method="post">
--#             <input type="hidden" name="authenticity_token" >
--#             <div class = "form-inbox">
--#               <input placeholder="type a message" class="form-inbox__text" type="text" name="message[content]" id="message_content">
--#               <label class = "form-inbox__image" for = "message_image">
--#                 <i class="fa fa-image"></i>
--#               </label>
--#             </div>
--#             <input type = "submit" name = "commit" value = "Send" class = "submit-btn" data-disable-with ="Send">
--#           </form>
--#         </div>
--#       </div>
--#     </div>
--#   </body>
--# </html>
-
 !!!
 %html
   %body
@@ -114,10 +40,11 @@
           %p.messages__user__text
             gu
         .form
-          %form#new_message.new_message{"accept-charset" => "UTF-8", :action => "/groups/2418/messages", :enctype => "multipart/form-data", :method => "post"}
-            %input{:name => "authenticity_token", :type => "hidden"}/
+          %form#new_message.new_message{accept:{charset: "UTF-8", action: "/groups/2418/messages", enctype: "multipart/form-data", method: "post"}}
+            %input{name: "authenticity_token", type: "hidden"}/
             .form-inbox
-              %input#message_content.form-inbox__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
-              %label.form-inbox__image{:for => "message_image"}
+              %input#message_content.form-inbox__text{name: "message[content]", placeholder: "type a message", type: "text"}/
+              %label.form-inbox__image{for: "message_image"}
                 %i.fa.fa-image
-            %input.submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+            %input.submit-btn{name: "commit", type: "submit", value: "Send"}/
+            
