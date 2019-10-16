@@ -1,0 +1,50 @@
+!!!
+%html
+  %body
+    .flash-box
+      .notice グループを作成しました
+    .wrapper
+      .chat-side
+        .side-header
+          .side-header__box
+            %p.side-header__box__user-name test
+            %ul.side-header__box__menu
+              %li.side-header__box__menu__new-group
+                %a{href: "#"}
+                  %i.fa.fa-edit
+              %li.side-header__box__menu__edit-user
+                %a{href: "#"}
+                  %i.fa.fa-cog
+        .groups
+          %a{href: "#"}
+          .group
+            %p.group__name
+              jjj
+            %p.groups__message
+              lll
+      .chat-main
+        .main-header
+          .main-header__left-box
+            %h2.main-header__left-box__current-group
+              hhh
+              %ul.main-header__left-box__member
+                kkkkkkkkkkk
+          .main-header__edit-btn Edit
+          %a{href: "#"}
+        .messages
+          .messages__box
+            %h2.messages__user
+              jjara
+              %ul.messages__user__time
+                9999/99:99
+          %p.messages__user__text
+            gu
+        .form
+          %form#new_message.new_message{accept:{charset: "UTF-8", action: "/groups/2418/messages", enctype: "multipart/form-data", method: "post"}}
+            %input{name: "authenticity_token", type: "hidden"}/
+            .form-inbox
+              %input#message_content.form-inbox__text{name: "message[content]", placeholder: "type a message", type: "text"}/
+              %label.form-inbox__image{for: "message_image"}
+                %i.fa.fa-image
+            %input.submit-btn{name: "commit", type: "submit", value: "Send"}/
+            
