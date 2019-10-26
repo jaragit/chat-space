@@ -4,51 +4,32 @@
     .flash-box
       .notice 
     .wrapper
-      .chat-side
-        .chat-side
-          .side-header
-            .side-header__box
-              %p.side-header__box__user-name 
-                = current_user.name
-              %ul.side-header__box__menu
-
-                %li.side-header__box__menu__new-group
-                  = link_to new_group_path do
-                    %i.fa.fa-edit
-                %li.side-header__box__menu__edit-user
-                  = link_to edit_user_path(current_user) do
-                    %i.fa.fa-cog
-          .groups
-            - current_user.groups.each do |group|
-              .group
-                = link_to group_messages_path(group) do
-                  .group__name
-                    = group.name
-                  .groups__message
-                    メッセージはまだありません。
+      = render 'devise/shared/side_bar'
       .chat-main
         .main-header
           .main-header__left-box
             %h2.main-header__left-box__current-group
-              hhh
+              ddd
               %ul.main-header__left-box__member
                 kkkkkkkkkkk
           .main-header__edit-btn Edit
           %a{href: "#"}
-        .messages
-          .messages__box
-            %h2.messages__user
-              jjara
-              %ul.messages__user__time
-                9999/99:99
-          %p.messages__user__text
-            gu
+        .message
+          = render @messages
         .form
-          %form#new_message.new_message{accept:{charset: "UTF-8", action: "/groups/2418/messages", enctype: "multipart/form-data", method: "post"}}
-            %input{name: "authenticity_token", type: "hidden"}/
-            .form-inbox
-              %input#message_content.form-inbox__text{name: "message[content]", placeholder: "type a message", type: "text"}/
-              %label.form-inbox__image{for: "message_image"}
-                %i.fa.fa-image
-            %input.submit-btn{name: "commit", type: "submit", value: "Send"}/
+          = form_for [@group, @message] do |f|
+            = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+            .form__mask
+              = f.label :image, class: 'form__mask__image' do
+                = fa_icon 'picture-o', class: 'icon'
+                = f.file_field :image, class: 'hidden'
+            = f.submit 'Send', class: 'form__submit'
+        -# .form
+        -#   %form#new_message.new_message{accept:{charset: "UTF-8", action: "/groups/2418/messages", enctype: "multipart/form-data", method: "post"}}
+        -#     %input{name: "authenticity_token", type: "hidden"}/
+        -#     .form-inbox
+        -#       %input#message_content.form-inbox__text{name: "message[content]", placeholder: "type a message", type: "text"}/
+        -#       %label.form-inbox__image{for: "message_image"}
+        -#         %i.fa.fa-image
+        -#     %input.submit-btn{name: "commit", type: "submit", value: "Send"}/
             
