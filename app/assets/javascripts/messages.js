@@ -1,40 +1,24 @@
 $(function(){
   function buildHTML(message){
     // 「もしメッセージに画像が含まれていたら」という条件式
-    if (message.image) {
+      var img = message.image ? `<img src= ${ message.image }>` : "";
       var html = //メッセージに画像が含まれる場合のHTMLを作る
        `<div class="message__box" data-message-id=${message.id}>
           <div class="message__user">
               ${message.user_name}
                 <div class="message__user__time">
-                ${message.date}
+                  ${message.date}
                 </div>
               <div class="message__user__text">
                 <p class="message__user__text__content">
                   ${message.content}
                 </p>
-              </div>
-            <img src=${message.image} >
-          </div>
-        </div>`
-    } else {
-      var html = 
-       `<div class="message__box" data-message-id=${message.id}>
-          <div class="message__user">
-              ${message.user_name}
-              <div class="message__user__time">
-              ${message.date}
-              </div>
-              <div class="message__user__text">
-                <p class="message__user__text__content">
-                  ${message.content}
-                </p>
+                  ${img} 
               </div>
           </div>
         </div>`
       return html;
-  };
-}
+  }
 
   $(".new_message").on("submit", function(e){
     e.preventDefault()
@@ -55,7 +39,6 @@ $(function(){
       $('.message').animate({scrollTop: $('.message')[0].scrollHeight}, 'fast');   
       $('form')[0].reset();
       $('.form__submit').prop('disabled', false);
-      // alert('kkkkk')
 
     })
     .fail(function() {
