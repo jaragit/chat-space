@@ -14,8 +14,8 @@
                 Members: 
                 - @group.users.each do |user|
                   = user.name
-          .main-header__edit-btn Edit
-          %a{href: "#"}
+          .main-header__edit-btn 
+            = link_to "Edit" , edit_group_path(current_user.id), method: :get, class: 'btn'
         .message
           = render @messages
         .form
