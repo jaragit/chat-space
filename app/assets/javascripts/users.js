@@ -60,7 +60,6 @@ $(function() {
       $(this)
       .parent()
       .remove();
-      console.log('mmmmmm')
     addDeleteUser(userName, userId);
     addMember(userId);
   });
