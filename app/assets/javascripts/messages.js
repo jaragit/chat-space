@@ -33,16 +33,44 @@ $(function(){
       contentType: false,
       
     })
-    .done(function(data){
-      var html = buildHTML(data);
+    .done(function(message){
+      var html = buildHTML(message);
       $('.message').append(html);
       $('.message').animate({scrollTop: $('.message')[0].scrollHeight}, 'fast');   
       $('form')[0].reset();
       $('.form__submit').prop('disabled', false);
 
     })
-    .fail(function() {
+    .fail(function(message) {
       alert("メッセージ送信に失敗しました");
-  });
+    })
   })
+
+  var reloadMessages = function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      last_message_id = $('.message__box:last').data("message-id")
+      $.ajax({
+        //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
+        url: 'api/messages',
+        //ルーティングで設定した通りhttpメソッドをgetに指定
+        type: 'get',
+        dataType: 'json',
+        //dataオプションでリクエストに値を含める
+        data: {id: last_message_id},
+      })
+      .done(function(message) {
+        console.log(message)
+        var insertHTML = '';
+        message.forEach(function(messages){
+          insertHTML = buildHTML(messages);
+          $('.message').append(insertHTML);
+          $('.message').animate({scrollTop: $('.message')[0].scrollHeight},);
+          console.log('errrrrrrr');
+        });
+      })
+      .fail(function() {
+        console.log('error');
+      });
+  }}
+  setInterval(reloadMessages, 7000);
 })
